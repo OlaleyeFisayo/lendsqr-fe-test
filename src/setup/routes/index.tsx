@@ -5,7 +5,7 @@ import {
 } from "react-router-dom";
 import Login from "../../pages/Login";
 import Dashboard from "../../pages/Dashboard";
-import User from "../../pages/Dashboard/User";
+import User from "../../pages/Dashboard/Outlets/User";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
