@@ -1,7 +1,6 @@
 import { RouterProvider } from "react-router-dom";
-import { router } from "./setup/routes/Index";
+import { router } from "./setup/routes";
 import { ContextProvider } from "./setup/app-context-manager";
-import "./App.scss";
 
 function App() {
   return <ContextProvider>
