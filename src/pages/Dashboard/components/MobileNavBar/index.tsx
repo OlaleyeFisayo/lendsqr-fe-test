@@ -5,6 +5,7 @@ import bell from "../../../../assets/svg/notification-bell.svg";
 import profileImg from "../../../../assets/images/profile.jpg";
 import dropdown from "../../../../assets/svg/dropdown.svg";
 import { AppContext } from "../../../../setup/app-context-manager";
+import MobileSideBar from "./component/MobileSidebar";
 
 export default function MobileNavBar() {
   const { toggleMobileSideBar, toggleSideBar } = useContext(AppContext);
@@ -37,6 +38,7 @@ export default function MobileNavBar() {
           <img src={dropdown} alt="dropdown" />
         </div>
       </div>
+      <MobileSideBar />
     </nav>
   );
 }
