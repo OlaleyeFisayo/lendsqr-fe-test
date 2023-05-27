@@ -26,7 +26,7 @@ import { NavLink } from "react-router-dom";
 
 export default function SideBar() {
   return (
-    <>
+    <div className="sidebar">
       <div className="switch-org">
         <img src={briefcase} alt="briefcase" />
         <p>Switch Organization</p>
@@ -93,7 +93,7 @@ export default function SideBar() {
       <ul>
         <p>Businesses</p>
         <li>
-          <NavLink to="user">
+          <NavLink to="">
             <img src={briefcase} alt="briefcase" />
             <p>Organization</p>
           </NavLink>
@@ -151,7 +151,7 @@ export default function SideBar() {
       <ul>
         <p>Settings</p>
         <li>
-          <NavLink to="user">
+          <NavLink to="">
             <img src={slider} alt="slider" />
             <p>Organization</p>
           </NavLink>
@@ -182,6 +182,6 @@ export default function SideBar() {
         <img src={signOut} alt="sign out" />
         <p>Logout</p>
       </div>
-    </>
+    </div>
   );
 }
