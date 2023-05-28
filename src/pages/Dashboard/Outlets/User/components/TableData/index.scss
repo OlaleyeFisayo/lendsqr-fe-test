@@ -1,4 +1,5 @@
 .data {
+  position: relative;
   td {
     padding: 20px 0;
     font-weight: 400;
@@ -6,11 +7,93 @@
     line-height: 16px;
     color: #545f7d;
   }
+
+  td:nth-of-type(3) {
+    text-transform: lowercase;
+  }
+
+  a {
+    text-decoration: none;
+    color: #545f7d;
+  }
+
+  .Active {
+    background: #39cd6260;
+    border-radius: 100px;
+    padding: 7px 14px;
+    text-align: center;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    color: #39cd62;
+  }
+
+  .Pending {
+    background: #e9b20060;
+    border-radius: 100px;
+    padding: 7px 14px;
+    text-align: center;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    color: #e9b200;
+  }
+  .Blacklisted {
+    background: #e4033b60;
+    border-radius: 100px;
+    padding: 7px 14px;
+    text-align: center;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    color: #e4033b;
+  }
+  .Inactive {
+    background: #545f7d60;
+    border-radius: 100px;
+    padding: 7px 14px;
+    text-align: center;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    color: #545f7d;
+  }
+
+  td:last-of-type {
+    cursor: pointer;
+  }
 }
 
 .data:not(:last-of-type) {
   td {
     border-bottom: 2px solid #213f7d1a;
     border-collapse: collapse;
+  }
+}
+
+.more {
+  position: absolute;
+  right: 0;
+  border-radius: 4px;
+  background: #ffffff;
+  border: 1px solid #545f7d0a;
+  box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
+  top: 15px;
+  padding: 20px 21px;
+  z-index: 2;
+
+  p {
+    display: flex;
+    align-items: center;
+    color: #545f7d;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+    gap: 8px;
+    cursor: pointer;
+  }
+
+  p:not(:last-of-type) {
+    margin-bottom: 20px;
   }
 }

@@ -5,8 +5,34 @@ import ellipseThree from "../../../../assets/svg/ellipse3.svg";
 import ellipseFour from "../../../../assets/svg/ellipse4.svg";
 import Table from "./components/Table";
 import TableData from "./components/TableData";
+import { User, getAllUser } from "../../../../setup/api-call/getAllUser";
+import { useLoaderData } from "react-router-dom";
+
+// eslint-disable-next-line react-refresh/only-export-components
+export async function loader(): Promise<User[]> {
+  const data = await getAllUser();
+  return data;
+}
 
 export default function User() {
+  const users = useLoaderData() as User[];
+  console.log(users);
+
+  const userList = users.map((data) => {
+    return (
+      <TableData
+        key={data.id}
+        orgName={data.orgName}
+        userName={data.userName}
+        email={data.email}
+        phoneNumber={data.phoneNumber}
+        createdAt={data.createdAt}
+        id={data.id}
+        lastActiveDate={data.lastActiveDate}
+      />
+    );
+  });
+
   return (
     <section className="user">
       <div className="user-content">
@@ -34,12 +60,7 @@ export default function User() {
           </div>
         </div>
 
-        <Table>
-          <TableData />
-          <TableData />
-          <TableData />
-          <TableData />
-        </Table>
+        <Table>{userList}</Table>
       </div>
     </section>
   );

@@ -1,6 +1,9 @@
 .table {
   margin-top: 40px;
   width: 100%;
+  overflow-x: auto;
+  max-width: 1400px;
+  min-width: 400px;
   background: #ffffff;
   border: 1px solid #213f7d0f;
   box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
@@ -9,6 +12,7 @@
 
   table {
     width: 100%;
+
     th {
       p {
         text-transform: uppercase;
