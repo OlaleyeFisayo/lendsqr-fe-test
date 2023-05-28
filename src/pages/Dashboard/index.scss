@@ -1,5 +1,9 @@
 .outlet {
-    padding-top: 100px;
-    display: grid;
-    grid-template-columns: 283px 1fr;
+  padding-top: 100px;
+  display: grid;
+  grid-template-columns: 283px 1fr;
+
+  @media (max-width: 800px) {
+    display: block;
+  }
 }

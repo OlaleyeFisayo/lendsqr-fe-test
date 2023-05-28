@@ -22,12 +22,12 @@ export default function User() {
           </div>
           <div className="users">
             <img src={ellipseThree} alt="users with loans" />
-            <h1>users</h1>
+            <h1>users with loans</h1>
             <p>12,453</p>
           </div>
           <div className="users">
             <img src={ellipseFour} alt="users with savings" />
-            <h1>users</h1>
+            <h1>users with savings</h1>
             <p>102,453</p>
           </div>
         </div>
