@@ -1,0 +1,16 @@
+.data {
+  td {
+    padding: 20px 0;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    color: #545f7d;
+  }
+}
+
+.data:not(:last-of-type) {
+  td {
+    border-bottom: 2px solid #213f7d1a;
+    border-collapse: collapse;
+  }
+}
