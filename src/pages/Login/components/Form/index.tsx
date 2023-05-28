@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useContext, useRef } from "react";
 import "./index.scss";
 import { AppContext } from "../../../../setup/app-context-manager";
-import { useToggleButton } from "../../../../setup/hooks";
+import { useToggleButton } from "../../../../setup/hooks/useToggleButton";
 
 export default function Form() {
   const { toggleButton, handleClick, handleSubmit } = useContext(AppContext);
