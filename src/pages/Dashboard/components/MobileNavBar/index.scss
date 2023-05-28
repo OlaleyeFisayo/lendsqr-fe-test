@@ -38,10 +38,12 @@
   }
 
   .search {
+    width: 100%;
     display: grid;
     grid-template-columns: 5fr 1fr;
     height: 40px;
-    margin: 0 auto 30px;
+    margin: 0 0 30px;
+    padding: 0 20px;
 
     input {
       width: 100%;
@@ -66,12 +68,15 @@
   }
 
   .details {
+    width: 100%;
     display: flex;
     flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
     align-items: center;
     gap: 40px;
+    padding: 0 70px 0 30px;
+
 
     .docs {
       font-size: 16px;
