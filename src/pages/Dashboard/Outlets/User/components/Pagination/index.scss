@@ -3,6 +3,7 @@
   justify-content: space-between;
   gap: 30px;
   margin-top: 20px;
+  flex-wrap: wrap;
 
   .one {
     display: flex;
@@ -17,9 +18,9 @@
     }
 
     select {
-      border: 1px solid rgba(33, 63, 125, 0.1);
+      border: none;
       border-radius: 4px;
-      background: #213f7d55;
+      background: #213f7d30;
       outline: none;
       color: #213f7d;
       font-size: 14px;
@@ -32,6 +33,24 @@
   .two {
     display: flex;
     list-style: none;
+    align-items: center;
+
+    .button {
+      padding: 0;
+      button {
+        padding: 5px 10px;
+        background: #213F7D1A;
+        border: none;
+        font-weight: 700;
+        font-size: 20px;
+        color: #213f7d;
+        cursor: pointer;
+      }
+
+    }
+    .button.disabled {
+      opacity: 0.4;
+    }
 
     li {
       padding: 10px;
@@ -39,7 +58,7 @@
       font-weight: 400;
       font-size: 16px;
       line-height: 19px;
-      color: #545F7D;
+      color: #545f7d;
       opacity: 0.6;
     }
 

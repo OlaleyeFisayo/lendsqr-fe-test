@@ -2,26 +2,34 @@ import { useContext } from "react";
 import { User } from "../../../../../../setup/api/getAllUser";
 import "./index.scss";
 import { AppContext } from "../../../../../../setup/context";
+import usePagination from "../../../../../../setup/hooks/usePagination";
 
 interface propType {
   users: User[];
 }
 
 export default function Pagination({ users }: propType) {
-  const { itemsPerPage, changeItems, changeCurrentPage, currentPage } =
-    useContext(AppContext);
+  const {
+    itemsPerPage,
+    changeItems,
+    changeCurrentPage,
+    currentPage,
+    increaseCurrentPageCount,
+    decreaseCurrentPageCount,
+  } = useContext(AppContext);
 
-  const pages = [];
+  const { totalPages, pages } = usePagination({
+    currentPage: currentPage,
+    itemsPerPage: itemsPerPage.items,
+    totalItems: users.length,
+    displayRange: 5,
+  });
 
-  for (let i = 1; i <= Math.ceil(users.length / itemsPerPage.items); i++) {
-    pages.push(i);
-  }
-
-  const renderPageNumbers = pages.map((number) => {
+  const renderPageNumbers = pages.map((number, index) => {
     return (
       <li
-        key={number}
-        id={number.toString()}
+        key={index}
+        id={index.toString()}
         onClick={changeCurrentPage}
         className={currentPage == number ? "active" : ""}
       >
@@ -48,7 +56,21 @@ export default function Pagination({ users }: propType) {
         </select>
         <p>out of {users.length}</p>
       </div>
-      <ul className="two">{renderPageNumbers}</ul>
+      <ul className="two">
+        <li
+          className={currentPage === 1 ? "button disabled" : "button"}
+          onClick={decreaseCurrentPageCount}
+        >
+          <button disabled={currentPage === 1}>&lt;</button>
+        </li>
+        {renderPageNumbers}
+        <li
+          className={currentPage === totalPages ? "button disabled" : "button"}
+          onClick={increaseCurrentPageCount}
+        >
+          <button disabled={currentPage === totalPages}>&gt;</button>
+        </li>
+      </ul>
     </div>
   );
 }

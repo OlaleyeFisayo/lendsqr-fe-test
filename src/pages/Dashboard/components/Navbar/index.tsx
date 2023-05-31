@@ -1,5 +1,5 @@
 import "./index.scss";
-import {useContext} from "react"
+import { useContext } from "react";
 import logo from "../../../../assets/svg/logo.svg";
 import search from "../../../../assets/svg/search.svg";
 import bell from "../../../../assets/svg/notification-bell.svg";
@@ -9,7 +9,7 @@ import MobileNavBar from "../MobileNavBar";
 import { AppContext } from "../../../../setup/context";
 
 export default function Navbar() {
-  const { toggleSideBar } = useContext(AppContext)
+  const { toggleSideBar } = useContext(AppContext);
 
   return (
     <>
@@ -44,9 +44,8 @@ export default function Navbar() {
           <div className="line"></div>
           <div className="line"></div>
         </div>
+        <MobileNavBar />
       </nav>
-
-      <MobileNavBar />
     </>
   );
 }

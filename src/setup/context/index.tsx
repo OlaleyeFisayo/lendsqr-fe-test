@@ -10,6 +10,8 @@ interface AppContextType {
   currentPage: number;
   changeItems(event: React.ChangeEvent<HTMLSelectElement>): void;
   changeCurrentPage(event: React.MouseEvent<HTMLLIElement>): void;
+  decreaseCurrentPageCount(): void;
+  increaseCurrentPageCount(): void;
 }
 
 interface FormValues {
@@ -40,10 +42,16 @@ function ContextProvider({ children }: { children: React.ReactNode }) {
       ...prevValues,
       [name]: value,
     }));
-    setCurrentPage(1)
+    setCurrentPage(1);
   }
   function changeCurrentPage(event: React.MouseEvent<HTMLLIElement>) {
     setCurrentPage(parseInt(event.currentTarget.id));
+  }
+  function decreaseCurrentPageCount() {
+    setCurrentPage((prevValue) => prevValue - 1);
+  }
+  function increaseCurrentPageCount() {
+    setCurrentPage((prevValue) => prevValue + 1);
   }
 
   const store = {
@@ -52,13 +60,15 @@ function ContextProvider({ children }: { children: React.ReactNode }) {
     handleSubmit,
     toggleSideBar,
     toggleMobileSideBar,
-    currentPage,
     itemsPerPage,
+    currentPage,
     changeItems,
     changeCurrentPage,
+    decreaseCurrentPageCount,
+    increaseCurrentPageCount,
   };
   return <AppContext.Provider value={store}>{children}</AppContext.Provider>;
 }
 
 export { AppContext, ContextProvider };
-export type { AppContextType };
+export type { FormValues };
