@@ -5,7 +5,7 @@ import ellipseThree from "../../../../assets/svg/ellipse3.svg";
 import ellipseFour from "../../../../assets/svg/ellipse4.svg";
 import Table from "./components/Table";
 import TableData from "./components/TableData";
-import { User, getAllUser } from "../../../../setup/api-call/getAllUser";
+import { User, getAllUser } from "../../../../setup/api/getAllUser";
 import { useLoaderData } from "react-router-dom";
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -16,7 +16,6 @@ export async function loader(): Promise<User[]> {
 
 export default function User() {
   const users = useLoaderData() as User[];
-  console.log(users);
 
   const userList = users.map((data) => {
     return (
@@ -61,6 +60,26 @@ export default function User() {
         </div>
 
         <Table>{userList}</Table>
+
+        <div className="pagination">
+          <div className="one">
+            <p>Showing</p>
+            <select name="limit" id="limit">
+              <option value="10">10</option>
+              <option value="20">20</option>
+              <option value="30">30</option>
+              <option value="40">40</option>
+              <option value="50">50</option>
+              <option value="60">60</option>
+              <option value="70">70</option>
+              <option value="80">80</option>
+              <option value="90">90</option>
+              <option value="100">100</option>
+            </select>
+            <p>out of {users.length}</p>
+          </div>
+          <div className="two"></div>
+        </div>
       </div>
     </section>
   );

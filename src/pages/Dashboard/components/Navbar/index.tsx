@@ -6,7 +6,7 @@ import bell from "../../../../assets/svg/notification-bell.svg";
 import profileImg from "../../../../assets/images/profile.jpg";
 import dropdown from "../../../../assets/svg/dropdown.svg";
 import MobileNavBar from "../MobileNavBar";
-import { AppContext } from "../../../../setup/app-context-manager";
+import { AppContext } from "../../../../setup/context";
 
 export default function Navbar() {
   const { toggleSideBar } = useContext(AppContext)

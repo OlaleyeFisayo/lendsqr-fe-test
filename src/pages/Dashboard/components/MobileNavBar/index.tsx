@@ -4,7 +4,7 @@ import search from "../../../../assets/svg/search.svg";
 import bell from "../../../../assets/svg/notification-bell.svg";
 import profileImg from "../../../../assets/images/profile.jpg";
 import dropdown from "../../../../assets/svg/dropdown.svg";
-import { AppContext } from "../../../../setup/app-context-manager";
+import { AppContext } from "../../../../setup/context";
 import MobileSideBar from "./component/MobileSidebar";
 
 export default function MobileNavBar() {
