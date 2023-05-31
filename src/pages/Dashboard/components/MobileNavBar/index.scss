@@ -6,11 +6,12 @@
   z-index: 2;
   position: absolute;
   width: 100%;
-  min-height: 100vh;
+  height: 100vh;
   padding: 100px 0 20px;
   box-shadow: 3px 0px 20px rgba(0, 0, 0, 0.09);
   transition: 500ms ease-in-out;
   transform: translateX(-100%);
+  overflow-y: scroll;
 
   .x-container {
     width: 40px;

@@ -1,0 +1,51 @@
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  margin-top: 20px;
+
+  .one {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+
+    p {
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 16px;
+      color: #545f7d;
+    }
+
+    select {
+      border: 1px solid rgba(33, 63, 125, 0.1);
+      border-radius: 4px;
+      background: #213f7d55;
+      outline: none;
+      color: #213f7d;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 16px;
+      padding: 7px 12px;
+    }
+  }
+
+  .two {
+    display: flex;
+    list-style: none;
+
+    li {
+      padding: 10px;
+      cursor: pointer;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 19px;
+      color: #545F7D;
+      opacity: 0.6;
+    }
+
+    li.active {
+      font-weight: 500 !important;
+      opacity: 1 !important;
+    }
+  }
+}

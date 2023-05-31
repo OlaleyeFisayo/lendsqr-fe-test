@@ -5,7 +5,7 @@ import { AppContext } from "../../../../setup/context";
 import { useToggleButton } from "../../../../setup/hooks/useToggleButton";
 
 export default function Form() {
-  const { toggleButton, handleClick, handleSubmit } = useContext(AppContext);
+  const { toggleButton, showPassword, handleSubmit } = useContext(AppContext);
 
   const passwordRef = useRef<HTMLInputElement>(null);
   
@@ -25,7 +25,7 @@ export default function Form() {
           placeholder="Password"
           ref={passwordRef}
         />
-        <button onClick={handleClick}>{toggleButton ? "hide" : "show"}</button>
+        <button onClick={showPassword}>{toggleButton ? "hide" : "show"}</button>
       </div>
       <p>forget password?</p>
       <Link to="dashboard/user">Log in</Link>

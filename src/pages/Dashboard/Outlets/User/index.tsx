@@ -7,6 +7,9 @@ import Table from "./components/Table";
 import TableData from "./components/TableData";
 import { User, getAllUser } from "../../../../setup/api/getAllUser";
 import { useLoaderData } from "react-router-dom";
+import Pagination from "./components/Pagination";
+import { ReactNode, useContext } from "react";
+import { AppContext } from "../../../../setup/context";
 
 // eslint-disable-next-line react-refresh/only-export-components
 export async function loader(): Promise<User[]> {
@@ -14,23 +17,29 @@ export async function loader(): Promise<User[]> {
   return data;
 }
 
-export default function User() {
-  const users = useLoaderData() as User[];
-
-  const userList = users.map((data) => {
+function renderUser(data: User[]): ReactNode {
+  return data.map((item) => {
     return (
       <TableData
-        key={data.id}
-        orgName={data.orgName}
-        userName={data.userName}
-        email={data.email}
-        phoneNumber={data.phoneNumber}
-        createdAt={data.createdAt}
-        id={data.id}
-        lastActiveDate={data.lastActiveDate}
+        key={item.id}
+        orgName={item.orgName}
+        userName={item.userName}
+        email={item.email}
+        phoneNumber={item.phoneNumber}
+        createdAt={item.createdAt}
+        id={item.id}
+        lastActiveDate={item.lastActiveDate}
       />
     );
   });
+}
+
+export default function User() {
+  const users = useLoaderData() as User[];
+  const { currentPage, itemsPerPage } = useContext(AppContext);
+  const indexOfLastItem = currentPage * itemsPerPage.items;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage.items;
+  const currentItems = users.slice(indexOfFirstItem, indexOfLastItem);
 
   return (
     <section className="user">
@@ -59,27 +68,9 @@ export default function User() {
           </div>
         </div>
 
-        <Table>{userList}</Table>
+        <Table>{renderUser(currentItems)}</Table>
 
-        <div className="pagination">
-          <div className="one">
-            <p>Showing</p>
-            <select name="limit" id="limit">
-              <option value="10">10</option>
-              <option value="20">20</option>
-              <option value="30">30</option>
-              <option value="40">40</option>
-              <option value="50">50</option>
-              <option value="60">60</option>
-              <option value="70">70</option>
-              <option value="80">80</option>
-              <option value="90">90</option>
-              <option value="100">100</option>
-            </select>
-            <p>out of {users.length}</p>
-          </div>
-          <div className="two"></div>
-        </div>
+        <Pagination users={users} />
       </div>
     </section>
   );
