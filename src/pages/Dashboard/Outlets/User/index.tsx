@@ -5,17 +5,11 @@ import ellipseThree from "../../../../assets/svg/ellipse3.svg";
 import ellipseFour from "../../../../assets/svg/ellipse4.svg";
 import Table from "./components/Table";
 import TableData from "./components/TableData";
-import { User, getAllUser } from "../../../../setup/api/getAllUser";
-import { useLoaderData } from "react-router-dom";
+import { User } from "../../../../setup/api/getAllUser";
 import Pagination from "./components/Pagination";
 import { ReactNode, useContext } from "react";
 import { AppContext } from "../../../../setup/context";
-
-// eslint-disable-next-line react-refresh/only-export-components
-export async function loader(): Promise<User[]> {
-  const data = await getAllUser();
-  return data;
-}
+import useUserList from "../../../../setup/hooks/useUserList";
 
 function renderUser(data: User[]): ReactNode {
   return data.map((item) => {
@@ -35,11 +29,21 @@ function renderUser(data: User[]): ReactNode {
 }
 
 export default function User() {
-  const users = useLoaderData() as User[];
+  const { users, error } = useUserList();
   const { currentPage, itemsPerPage } = useContext(AppContext);
   const indexOfLastItem = currentPage * itemsPerPage.items;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage.items;
   const currentItems = users.slice(indexOfFirstItem, indexOfLastItem);
+
+  if (error) {
+    return (
+      <section className="user">
+        <div className="user-content">
+          <h1>There is an Error: {error.message}</h1>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="user">
