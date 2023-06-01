@@ -17,6 +17,7 @@ const useUserList = (): UserListHook => {
       try {
         const data = await getAllUser();
         setUsers(data);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (err: any) {
         setError(err as Error);
       }

@@ -10,6 +10,7 @@ function useToggleButton(
     } else {
       passwordRef.current?.setAttribute("type", "password");
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [toggleButton]);
 }
 

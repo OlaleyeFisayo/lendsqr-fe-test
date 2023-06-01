@@ -21,7 +21,7 @@ export default function Pagination({ users }: propType) {
     currentPage: currentPage,
     itemsPerPage: itemsPerPage.items,
     totalItems: users.length,
-    displayRange: 5,
+    displayRange: 3,
   });
 
   const renderPageNumbers = pages.map((number, index) => {
