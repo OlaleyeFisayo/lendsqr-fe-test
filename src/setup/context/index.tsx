@@ -9,7 +9,6 @@ interface AppContextType {
   itemsPerPage: FormValues;
   currentPage: number;
   changeItems(event: React.ChangeEvent<HTMLSelectElement>): void;
-  changeCurrentPage(event: React.MouseEvent<HTMLLIElement>): void;
   decreaseCurrentPageCount(): void;
   increaseCurrentPageCount(): void;
 }
@@ -44,9 +43,6 @@ function ContextProvider({ children }: { children: React.ReactNode }) {
     }));
     setCurrentPage(1);
   }
-  function changeCurrentPage(event: React.MouseEvent<HTMLLIElement>) {
-    setCurrentPage(parseInt(event.currentTarget.id));
-  }
   function decreaseCurrentPageCount() {
     setCurrentPage((prevValue) => prevValue - 1);
   }
@@ -63,7 +59,6 @@ function ContextProvider({ children }: { children: React.ReactNode }) {
     itemsPerPage,
     currentPage,
     changeItems,
-    changeCurrentPage,
     decreaseCurrentPageCount,
     increaseCurrentPageCount,
   };

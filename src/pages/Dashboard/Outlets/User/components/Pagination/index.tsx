@@ -12,7 +12,6 @@ export default function Pagination({ users }: propType) {
   const {
     itemsPerPage,
     changeItems,
-    changeCurrentPage,
     currentPage,
     increaseCurrentPageCount,
     decreaseCurrentPageCount,
@@ -30,7 +29,6 @@ export default function Pagination({ users }: propType) {
       <li
         key={index}
         id={index.toString()}
-        onClick={changeCurrentPage}
         className={currentPage == number ? "active" : ""}
       >
         {number}
