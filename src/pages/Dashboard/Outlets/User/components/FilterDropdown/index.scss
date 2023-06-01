@@ -1,0 +1,61 @@
+.filter {
+  position: absolute;
+  left: 0;
+  background: #ffffff;
+  border: 1px solid rgba(84, 95, 125, 0.14);
+  box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
+  border-radius: 4px;
+  z-index: 1;
+  top: 25px;
+
+  .form {
+    padding: 30px 20px;
+
+    input,
+    select {
+      width: 100%;
+      outline: none;
+      margin: 6px 0 20px;
+      padding: 12px 20px;
+      background: #ffffff;
+      opacity: 0.5;
+      border: 1px solid #213f7d;
+      border-radius: 8px;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 16px;
+      color: #545f7d;
+    }
+
+    .button-section {
+      display: flex;
+      gap: 14px;
+
+      button:first-of-type {
+        border: 1px solid #545f7d;
+        border-radius: 8px;
+        background: #ffffff;
+        color: #545f7d;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 16px;
+        text-align: center;
+        cursor: pointer;
+        padding: 11px 30px;
+      }
+
+      button:last-of-type {
+        background: #39cdcc;
+        border: 1px solid #39cdcc;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 16px;
+        text-align: center;
+        padding: 11px 30px;
+        color: #ffffff;
+        cursor: pointer;
+      }
+    }
+  }
+}

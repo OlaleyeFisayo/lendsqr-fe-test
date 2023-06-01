@@ -1,4 +1,5 @@
 import filterIcon from "../../../../../../assets/svg/filter.svg";
+import FilterDropDown from "../FilterDropdown";
 import "./index.scss";
 
 export default function Table({ children }: { children: React.ReactNode }) {
@@ -44,6 +45,7 @@ export default function Table({ children }: { children: React.ReactNode }) {
               </p>
             </th>
             <th></th>
+            <FilterDropDown />
           </tr>
         </thead>
         <tbody>{children}</tbody>
