@@ -1,8 +1,12 @@
+import { useContext } from "react";
 import filterIcon from "../../../../../../assets/svg/filter.svg";
 import FilterDropDown from "../FilterDropdown";
 import "./index.scss";
+import { AppContext } from "../../../../../../setup/context";
 
 export default function Table({ children }: { children: React.ReactNode }) {
+  const { filterDropdown, toogleFilterDropdown } = useContext(AppContext);
+
   return (
     <div className="table">
       <table>
@@ -11,41 +15,41 @@ export default function Table({ children }: { children: React.ReactNode }) {
             <th>
               <p>
                 Organization
-                <img src={filterIcon} alt="Filter Icon" />
+                <img onClick={toogleFilterDropdown} src={filterIcon} alt="Filter Icon" />
               </p>
             </th>
             <th>
               <p>
                 username
-                <img src={filterIcon} alt="Filter Icon" />
+                <img onClick={toogleFilterDropdown} src={filterIcon} alt="Filter Icon" />
               </p>
             </th>
             <th>
               <p>
                 email
-                <img src={filterIcon} alt="Filter Icon" />
+                <img onClick={toogleFilterDropdown} src={filterIcon} alt="Filter Icon" />
               </p>
             </th>
             <th>
               <p>
                 phone number
-                <img src={filterIcon} alt="Filter Icon" />
+                <img onClick={toogleFilterDropdown} src={filterIcon} alt="Filter Icon" />
               </p>
             </th>
             <th>
               <p>
                 date joined
-                <img src={filterIcon} alt="Filter Icon" />
+                <img onClick={toogleFilterDropdown} src={filterIcon} alt="Filter Icon" />
               </p>
             </th>
             <th>
               <p>
                 status
-                <img src={filterIcon} alt="Filter Icon" />
+                <img onClick={toogleFilterDropdown} src={filterIcon} alt="Filter Icon" />
               </p>
             </th>
             <th></th>
-            <FilterDropDown />
+            {filterDropdown && <FilterDropDown />}
           </tr>
         </thead>
         <tbody>{children}</tbody>

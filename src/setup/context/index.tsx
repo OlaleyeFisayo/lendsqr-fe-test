@@ -11,6 +11,8 @@ interface AppContextType {
   changeItems(event: React.ChangeEvent<HTMLSelectElement>): void;
   decreaseCurrentPageCount(): void;
   increaseCurrentPageCount(): void;
+  filterDropdown: boolean;
+  toogleFilterDropdown(): void;
 }
 
 interface FormValues {
@@ -23,6 +25,7 @@ function ContextProvider({ children }: { children: React.ReactNode }) {
   const [toggleButton, setToggleButton] = useState(false);
   const [toggleMobileSideBar, setToggleMobileSideBar] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
+  const [filterDropdown, setFilterDropdown] = useState(false);
   const [itemsPerPage, setitemsPerPage] = useState<FormValues>({
     items: 10,
   });
@@ -49,6 +52,9 @@ function ContextProvider({ children }: { children: React.ReactNode }) {
   function increaseCurrentPageCount() {
     setCurrentPage((prevValue) => prevValue + 1);
   }
+  function toogleFilterDropdown() {
+    setFilterDropdown(!filterDropdown);
+  }
 
   const store = {
     toggleButton,
@@ -61,6 +67,8 @@ function ContextProvider({ children }: { children: React.ReactNode }) {
     changeItems,
     decreaseCurrentPageCount,
     increaseCurrentPageCount,
+    filterDropdown,
+    toogleFilterDropdown,
   };
   return <AppContext.Provider value={store}>{children}</AppContext.Provider>;
 }
