@@ -24,7 +24,7 @@ const useUserDetail = (id: string): UserDetailsHook => {
     };
 
     fetchUserList();
-  }, []);
+  }, [id]);
 
   return { userDetail, error };
 };
