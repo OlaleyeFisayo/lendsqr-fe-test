@@ -80,7 +80,6 @@
   border: 1px solid #545f7d0a;
   box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
   top: 15px;
-  padding: 20px 21px;
   z-index: 2;
 
   p {
@@ -91,6 +90,7 @@
     font-size: 14px;
     line-height: 16px;
     gap: 8px;
+    padding: 0 20px;
     cursor: pointer;
   }
 

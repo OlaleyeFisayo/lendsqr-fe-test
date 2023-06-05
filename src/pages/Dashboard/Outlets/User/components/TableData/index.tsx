@@ -53,7 +53,7 @@ export default function TableData({
       </td>
 
       {moreButton && (
-        <div className="more">
+        <td className="more">
           <p onClick={hideMore}>
             <img src={view} alt="view" />
             <Link to={`${id}`}>View Details</Link>
@@ -66,7 +66,7 @@ export default function TableData({
             <img src={userCheck} alt="user check" />
             Activate user
           </p>
-        </div>
+        </td>
       )}
     </tr>
   );

@@ -22,5 +22,3 @@ export async function getAllUser() {
   const data = await res.json();
   return data;
 }
-
-export type UserList = User[];

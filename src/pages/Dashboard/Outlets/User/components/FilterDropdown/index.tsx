@@ -6,7 +6,7 @@ export default function FilterDropDown() {
   const { handleFilterForm } = useContext(AppContext);
   return (
     <th className="filter">
-      <div className="form">
+      <td className="form">
         <p>Organization</p>
         <select
           name="organization"
@@ -59,7 +59,7 @@ export default function FilterDropDown() {
           <button>Reset</button>
           <button>Filter</button>
         </div>
-      </div>
+      </td>
     </th>
   );
 }
