@@ -8,6 +8,16 @@ export default function UserDetails() {
   const { userDetail, error } = useUserDetail(id || "");
   console.log(userDetail);
 
+  if (error) {
+    return (
+      <section className="userDetails">
+        <div className="userDetails-content">
+          <h1>{error.message}</h1>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className="userDetails">
       <div className="userDetails-content">
@@ -25,18 +35,22 @@ export default function UserDetails() {
           </div>
         </div>
         <div className="user-info">
-          <div className="basic-info">
-            <div>
-              <div className="avatar">
-                <img src={userDetail.profile.avatar} alt="Avatar" />
+          {userDetail && userDetail.profile && (
+            <div className="basic-info">
+              <div>
+                <div className="avatar">
+                  <img src={userDetail.profile.avatar} alt="Avatar" />
+                </div>
+                <div className="name">
+                  <h1>
+                    {userDetail.profile.firstName} {userDetail.profile.lastName}
+                  </h1>
+                  <p>{userDetail.accountNumber}</p>
+                </div>
               </div>
-              <div className="name">
-                <h1>{userDetail.profile.firstName} {userDetail.profile.lastName}</h1>
-                <p>{userDetail.accountNumber}</p>
-              </div>
+              <div></div>
             </div>
-            <div></div>
-          </div>
+          )}
         </div>
       </div>
     </section>

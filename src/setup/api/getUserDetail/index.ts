@@ -1,4 +1,5 @@
 export type UserDetail = {
+  accountBalance: string;
   accountNumber: string;
   profile: {
     firstName: string;
@@ -15,7 +16,7 @@ export async function getUserDetails(id: string) {
   );
   if (!res.ok) {
     throw {
-      message: "Failed to fetch user list",
+      message: "Unable to fetch this users detail",
       statusText: res.statusText,
       status: res.status,
     };

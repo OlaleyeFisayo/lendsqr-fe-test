@@ -1,7 +1,11 @@
 import { useState, useEffect } from "react";
 import { getAllUser, User } from "../../api/getAllUser";
 
-type ErrorType = Error | null;
+type ErrorType = {
+  message: string;
+  statusText: string;
+  status: number;
+} | null;
 
 interface UserListHook {
   users: User[];
@@ -19,7 +23,7 @@ const useUserList = (): UserListHook => {
         setUsers(data);
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (err: any) {
-        setError(err as Error);
+        setError(err);
       }
     };
 

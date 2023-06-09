@@ -1,7 +1,11 @@
 import { useState, useEffect } from "react";
 import { getUserDetails, UserDetail } from "../../api/getUserDetail";
 
-type ErrorType = Error | null;
+type ErrorType = {
+  message: string;
+  statusText: string;
+  status: number;
+} | null;
 
 interface UserDetailsHook {
   userDetail: UserDetail;
@@ -9,21 +13,21 @@ interface UserDetailsHook {
 }
 
 const useUserDetail = (id: string): UserDetailsHook => {
-  const [userDetail, setUsers] = useState({} as UserDetail);
+  const [userDetail, setUserDetail] = useState<UserDetail>({} as UserDetail);
   const [error, setError] = useState<ErrorType>(null);
 
   useEffect(() => {
-    const fetchUserList = async () => {
+    async function fetchUserDetails() {
       try {
         const data = await getUserDetails(id);
-        setUsers(data);
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        setUserDetail(data);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (err: any) {
-        setError(err as Error);
+        setError(err);
       }
-    };
+    }
 
-    fetchUserList();
+    fetchUserDetails();
   }, [id]);
 
   return { userDetail, error };
