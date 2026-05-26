@@ -1,0 +1,60 @@
+#layout-sidebar {
+  padding: 30px 0;
+  box-shadow: var(--shadow);
+  width: 100%;
+
+  .organization {
+    padding: 10px 30px;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    color: var(--primary);
+    font-size: 16;
+
+    p {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+    }
+  }
+
+  .sidebar-data {
+    .sidebar-title {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--primary-100);
+      padding: 10px 30px;
+      cursor: pointer;
+    }
+
+    .sidebar-child {
+      --sidebar-child-color-opacity: 0.6;
+
+      padding: 10px 30px;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 400;
+      color: rgb(33 63 125 / var(--sidebar-child-color-opacity));
+      text-transform: capitalize;
+      transition: all 250ms ease-in-out;
+
+      .sidebar-child-icon {
+        width: 16px;
+        height: 16px;
+        object-fit: contain;
+        flex-shrink: 0;
+      }
+
+      &:hover,
+      &.sidebar-child--active {
+        background: rgb(57 205 204 / 0.3);
+        border-left: 4px solid var(--secondary);
+        --sidebar-child-color-opacity: 1;
+        text-decoration: none;
+      }
+    }
+  }
+}

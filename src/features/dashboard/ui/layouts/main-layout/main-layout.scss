@@ -1,0 +1,17 @@
+#main-layout {
+  width: 100%;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+
+  .main-layout-main {
+    flex: 1;
+    overflow: auto;
+    display: grid;
+    grid-template-columns: 290px auto;
+
+    .child {
+      padding: 60px;
+    }
+  }
+}
