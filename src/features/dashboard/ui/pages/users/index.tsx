@@ -1,4 +1,5 @@
 import UserStats from "../../components/user-stats";
+import UserTable from "../../components/user-table";
 import "./users.scss";
 
 export default function Users() {
@@ -6,6 +7,7 @@ export default function Users() {
     <section id="users-page">
       <h1>Users</h1>
       <UserStats />
+      <UserTable />
     </section>
   );
 }

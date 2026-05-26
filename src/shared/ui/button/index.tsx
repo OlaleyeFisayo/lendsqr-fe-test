@@ -7,12 +7,17 @@ export default function Button({
   children,
   className,
   ref,
+  type = "button",
+  variant = "primary",
   ...props
-}: ButtonProps) {
+}: ButtonProps & {
+  variant?: "primary" | "outline";
+}) {
   return (
     <button
       ref={ref}
-      className={["app-button", className].filter(Boolean).join(" ")}
+      type={type}
+      className={["app-button", `app-button--${variant}`, className].filter(Boolean).join(" ")}
       {...props}
     >
       {children}
