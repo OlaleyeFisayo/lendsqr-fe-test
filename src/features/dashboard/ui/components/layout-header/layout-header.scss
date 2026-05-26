@@ -6,6 +6,11 @@
   padding: 35px 30px;
   box-shadow: var(--shadow);
 
+  .header-input {
+    width: 100%;
+    max-width: 600px;
+  }
+
   .app-button {
     flex: 0 0 56px;
     width: 56px;

@@ -323,6 +323,7 @@ export default function DataTable<TData extends Record<string, unknown>>({
           aria-label="Table pagination"
         >
           <button
+            className="data-table-page-control"
             type="button"
             disabled={!table.getCanPreviousPage()}
             onClick={() => table.previousPage()}
@@ -353,6 +354,7 @@ export default function DataTable<TData extends Record<string, unknown>>({
             );
           })}
           <button
+            className="data-table-page-control"
             type="button"
             disabled={!table.getCanNextPage()}
             onClick={() => table.nextPage()}

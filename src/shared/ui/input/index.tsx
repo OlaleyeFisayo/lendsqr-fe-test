@@ -24,6 +24,7 @@ export default function Input({
   ref,
   type,
   children,
+  className,
   ...props
 }: InputProps) {
   const isPassword = type === "password";
@@ -39,7 +40,7 @@ export default function Input({
     : ariaDescribedBy;
 
   return (
-    <div>
+    <div className={className}>
       <div className={`input-container${hasError ? " input-container--error" : ""}`}>
         {label !== undefined && label !== null && (
           <label htmlFor={inputId}>

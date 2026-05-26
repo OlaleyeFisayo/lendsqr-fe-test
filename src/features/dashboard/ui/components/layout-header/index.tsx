@@ -9,7 +9,10 @@ export default function LayoutHeader() {
   return (
     <header id="layout-header">
       <Logo />
-      <Input placeholder="Search for anything">
+      <Input
+        placeholder="Search for anything"
+        className="header-input"
+      >
         <Button>
           <Icon
             icon="tabler:search"

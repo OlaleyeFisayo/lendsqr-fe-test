@@ -10,6 +10,7 @@ export default function LayoutSidebar() {
       <div className="organization">
         <img
           src={organizationIcon}
+          alt="organization icon"
           aria-hidden="true"
           className="sidebar-child-icon"
         />
@@ -31,7 +32,7 @@ export default function LayoutSidebar() {
               <>
                 <img
                   src={child.icon}
-                  alt={child.label}
+                  alt=""
                   aria-hidden="true"
                   className="sidebar-child-icon"
                 />
