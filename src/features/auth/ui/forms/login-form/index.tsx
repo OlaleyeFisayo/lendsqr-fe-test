@@ -4,6 +4,7 @@ import type {
   SubmitHandler,
 } from "react-hook-form";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router";
 import { z } from "zod";
 
 import Button from "@/shared/ui/button";
@@ -48,6 +49,7 @@ const loginFormResolver: Resolver<LoginFormValues> = async (values) => {
 };
 
 export default function LoginForm() {
+  const navigate = useNavigate();
   const {
     formState: { errors },
     handleSubmit,
@@ -60,7 +62,9 @@ export default function LoginForm() {
     resolver: loginFormResolver,
   });
 
-  const onSubmit: SubmitHandler<LoginFormValues> = () => undefined;
+  const onSubmit: SubmitHandler<LoginFormValues> = () => {
+    void navigate("/users");
+  };
 
   return (
     <form
@@ -82,7 +86,7 @@ export default function LoginForm() {
         {...register("password")}
       />
 
-      <p className="forget-password">Forgot PASSWORD?</p>
+      <p className="forget-password">Forgot Password?</p>
 
       <Button>Log in</Button>
     </form>

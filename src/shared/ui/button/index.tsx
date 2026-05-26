@@ -1,11 +1,20 @@
-import type { PropsWithChildren } from "react";
+import type { ComponentPropsWithRef } from "react";
 import "./button.scss";
 
-type ButtonProps = PropsWithChildren;
+type ButtonProps = ComponentPropsWithRef<"button">;
 
-export default function Button({ children }: ButtonProps) {
+export default function Button({
+  children,
+  className,
+  ref,
+  ...props
+}: ButtonProps) {
   return (
-    <button id="app-button">
+    <button
+      ref={ref}
+      className={["app-button", className].filter(Boolean).join(" ")}
+      {...props}
+    >
       {children}
     </button>
   );

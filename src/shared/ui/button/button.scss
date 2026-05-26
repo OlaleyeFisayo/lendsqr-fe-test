@@ -1,4 +1,4 @@
-#app-button {
+.app-button {
   width: 100%;
   background: var(--secondary);
   text-transform: uppercase;
@@ -12,4 +12,9 @@
   border: 0;
   border-radius: 8px;
   cursor: pointer;
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.65;
+  }
 }
