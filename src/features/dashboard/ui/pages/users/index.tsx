@@ -1,5 +1,11 @@
+import UserStats from "../../components/user-stats";
+import "./users.scss";
+
 export default function Users() {
   return (
-    <div>Users</div>
+    <section id="users-page">
+      <h1>Users</h1>
+      <UserStats />
+    </section>
   );
 }

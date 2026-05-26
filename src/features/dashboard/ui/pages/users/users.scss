@@ -1,0 +1,11 @@
+#users-page {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+
+  h1 {
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--primary);
+  }
+}
