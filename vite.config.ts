@@ -7,6 +7,41 @@ import { defineConfig } from "vite";
 
 // https://vite.dev/config/
 export default defineConfig({
+  build: {
+    rolldownOptions: {
+      output: {
+        manualChunks(id) {
+          if (!id.includes("node_modules")) {
+            return;
+          }
+
+          const normalizedId = id.replaceAll("\\", "/");
+
+          if (normalizedId.includes("/@radix-ui/")) {
+            return "radix-vendor";
+          }
+
+          if (normalizedId.includes("/@tanstack/")) {
+            return "tanstack-vendor";
+          }
+
+          if (normalizedId.includes("/@iconify/")) {
+            return "iconify-vendor";
+          }
+
+          if (
+            normalizedId.includes("/react/")
+            || normalizedId.includes("/react-dom/")
+            || normalizedId.includes("/scheduler/")
+          ) {
+            return "react-vendor";
+          }
+
+          return "vendor";
+        },
+      },
+    },
+  },
   plugins: [react()],
   resolve: {
     alias: [
