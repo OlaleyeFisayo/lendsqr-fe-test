@@ -1,0 +1,14 @@
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  .forget-password {
+    font-family: var(--font-avenir-next);
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--secondary);
+    cursor: pointer;
+  }
+}
