@@ -27,3 +27,23 @@
   color: var(--primary-100);
   border: 1px solid var(--primary);
 }
+
+.app-button--danger-outline {
+  background: var(--white);
+  color: #e4033b;
+  border: 1px solid #e4033b;
+
+  &:hover {
+    background: rgb(228 3 59 / 0.08);
+  }
+}
+
+.app-button--secondary-outline {
+  background: var(--white);
+  color: var(--secondary);
+  border: 1px solid var(--secondary);
+
+  &:hover {
+    background: rgb(57 205 204 / 0.1);
+  }
+}

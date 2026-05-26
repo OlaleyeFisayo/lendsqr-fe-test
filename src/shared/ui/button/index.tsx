@@ -11,7 +11,7 @@ export default function Button({
   variant = "primary",
   ...props
 }: ButtonProps & {
-  variant?: "primary" | "outline";
+  variant?: "danger-outline" | "outline" | "primary" | "secondary-outline";
 }) {
   return (
     <button
