@@ -1,5 +1,6 @@
 import type {
   ComponentPropsWithRef,
+  PropsWithChildren,
   ReactNode,
 } from "react";
 import {
@@ -12,7 +13,7 @@ import "./input.scss";
 type InputProps = ComponentPropsWithRef<"input"> & {
   error?: string;
   label?: ReactNode;
-};
+} & PropsWithChildren;
 
 export default function Input({
   "aria-describedby": ariaDescribedBy,
@@ -22,6 +23,7 @@ export default function Input({
   name,
   ref,
   type,
+  children,
   ...props
 }: InputProps) {
   const isPassword = type === "password";
@@ -62,6 +64,7 @@ export default function Input({
               {isPasswordVisible ? "hide" : "show"}
             </button>
           )}
+          {children}
         </div>
       </div>
       {hasError && (

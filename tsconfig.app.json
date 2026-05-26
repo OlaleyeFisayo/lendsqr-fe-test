@@ -11,11 +11,7 @@
     "moduleResolution": "bundler",
     "paths": {
       "@": ["./src"],
-      "@/*": ["./src/*"],
-      "@shared": ["./src/shared"],
-      "@shared/*": ["./src/shared/*"],
-      "@features": ["./src/features"],
-      "@features/*": ["./src/features/*"]
+      "@/*": ["./src/*"]
     },
 
     "types": ["vite/client"],
