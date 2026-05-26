@@ -236,7 +236,10 @@ export default function DataTable<TData extends Record<string, unknown>>({
                                   <Popover.Content
                                     className="data-table-filter-popover"
                                     align="start"
+                                    collisionPadding={16}
+                                    side="bottom"
                                     sideOffset={12}
+                                    sticky="always"
                                   >
                                     <form
                                       onSubmit={(event) => {

@@ -67,8 +67,11 @@
 }
 
 .data-table-filter-popover {
-  width: 270px;
+  width: min(270px, calc(100vw - 32px));
+  max-height: min(640px, calc(100vh - 32px), var(--radix-popover-content-available-height));
   padding: 30px 20px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
   background: var(--white);
   border: 1px solid rgb(84 95 125 / 0.14);
   border-radius: 4px;
@@ -135,10 +138,14 @@
 }
 
 .data-table-filter-actions {
+  position: sticky;
+  bottom: -30px;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 14px;
-  padding-top: 10px;
+  padding: 10px 0 30px;
+  margin-bottom: -30px;
+  background: var(--white);
 
   .app-button {
     min-height: 40px;
