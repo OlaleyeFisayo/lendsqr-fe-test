@@ -109,8 +109,7 @@
   color: var(--primary-100);
   background: var(--white);
 
-  input,
-  select {
+  input {
     width: 100%;
     min-width: 0;
     padding: 10px 12px;
@@ -131,12 +130,6 @@
     height: 18px;
     margin-right: 12px;
     flex: 0 0 auto;
-  }
-}
-
-.data-table-filter-control--select {
-  select {
-    appearance: none;
   }
 }
 
@@ -177,18 +170,6 @@
   gap: 10px;
   color: var(--primary-100);
   font-size: 14px;
-
-  select {
-    min-width: 80px;
-    padding: 7px 12px;
-    color: var(--primary);
-    font: inherit;
-    font-weight: 500;
-    background: rgb(33 63 125 / 0.1);
-    border: 0;
-    border-radius: 4px;
-    outline: 0;
-  }
 }
 
 .data-table-page-nav {

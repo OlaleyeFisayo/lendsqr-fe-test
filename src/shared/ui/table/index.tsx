@@ -20,6 +20,7 @@ import {
 } from "react";
 import filterIcon from "@/shared/assets/filter.svg";
 import Button from "@/shared/ui/button";
+import Select from "@/shared/ui/select";
 import "./table.scss";
 
 type FilterOption = {
@@ -158,27 +159,14 @@ export default function DataTable<TData extends Record<string, unknown>>({
           htmlFor={inputId}
         >
           <span>{column.header}</span>
-          <div className="data-table-filter-control data-table-filter-control--select">
-            <select
-              id={inputId}
-              value={value}
-              onChange={event => updateFilterValue(column.accessorKey, event.target.value)}
-            >
-              <option value="">Select</option>
-              {column.filterOptions?.map(option => (
-                <option
-                  key={option.value}
-                  value={option.value}
-                >
-                  {option.label}
-                </option>
-              ))}
-            </select>
-            <Icon
-              icon="tabler:chevron-down"
-              aria-hidden="true"
-            />
-          </div>
+          <Select
+            id={inputId}
+            value={value}
+            placeholder="Select"
+            clearLabel="Select"
+            options={column.filterOptions ?? []}
+            onValueChange={nextValue => updateFilterValue(column.accessorKey, nextValue)}
+          />
         </label>
       );
     }
@@ -308,19 +296,16 @@ export default function DataTable<TData extends Record<string, unknown>>({
       <div className="data-table-pagination">
         <div className="data-table-page-size">
           <span>Showing</span>
-          <select
-            value={table.getState().pagination.pageSize}
-            onChange={event => table.setPageSize(Number(event.target.value))}
-          >
-            {pageSizeOptions.map(pageSize => (
-              <option
-                key={pageSize}
-                value={pageSize}
-              >
-                {pageSize}
-              </option>
-            ))}
-          </select>
+          <Select
+            ariaLabel="Rows per page"
+            value={String(table.getState().pagination.pageSize)}
+            variant="pagination"
+            options={pageSizeOptions.map(pageSize => ({
+              label: pageSize,
+              value: String(pageSize),
+            }))}
+            onValueChange={nextValue => table.setPageSize(Number(nextValue))}
+          />
           <span>
             out of
             {" "}
