@@ -34,6 +34,10 @@ export default function UserDetail() {
     );
   }
 
+  const normalizedStatus = user.status.toLowerCase();
+  const canActivateUser = normalizedStatus !== "active";
+  const canBlacklistUser = normalizedStatus !== "blacklisted";
+
   const userDetailSections = [
     {
       id: "personal-information",
@@ -164,11 +168,15 @@ export default function UserDetail() {
       <div className="user-detail-header">
         <h1>User Details</h1>
         <div className="user-detail-actions">
-          <BlacklistUserDialog
-            userName={user.fullName}
-            trigger={<Button variant="danger-outline">Blacklist User</Button>}
-          />
-          <Button variant="secondary-outline">Activate User</Button>
+          {canBlacklistUser && (
+            <BlacklistUserDialog
+              userName={user.fullName}
+              trigger={<Button variant="danger-outline">Blacklist User</Button>}
+            />
+          )}
+          {canActivateUser && (
+            <Button variant="secondary-outline">Activate User</Button>
+          )}
         </div>
       </div>
       <UserDetailCard
