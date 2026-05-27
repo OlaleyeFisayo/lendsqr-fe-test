@@ -2,6 +2,7 @@ import { Icon } from "@iconify/react";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { Avatar } from "radix-ui";
 import { useNavigate } from "react-router";
+import { toast } from "sonner";
 import Button from "@/shared/ui/button";
 import Input from "@/shared/ui/input";
 import Logo from "@/shared/ui/logo";
@@ -15,6 +16,7 @@ export default function LayoutHeader({ onMenuClick }: LayoutHeaderProps) {
   const navigate = useNavigate();
 
   function handleLogout() {
+    toast.success("User has been logged out");
     void navigate("/");
   }
 

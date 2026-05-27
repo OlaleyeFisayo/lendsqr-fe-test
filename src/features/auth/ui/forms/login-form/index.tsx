@@ -5,6 +5,7 @@ import type {
 } from "react-hook-form";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
+import { toast } from "sonner";
 import { z } from "zod";
 
 import Button from "@/shared/ui/button";
@@ -63,6 +64,7 @@ export default function LoginForm() {
   });
 
   const onSubmit: SubmitHandler<LoginFormValues> = () => {
+    toast.success("Login successful");
     void navigate("/users");
   };
 
