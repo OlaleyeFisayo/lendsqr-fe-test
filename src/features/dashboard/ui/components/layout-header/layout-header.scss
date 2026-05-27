@@ -85,9 +85,13 @@
     }
 
     .user-details {
+      padding: 0;
       display: flex;
       gap: 5px;
       align-items: center;
+      color: var(--primary);
+      background: transparent;
+      border: 0;
       cursor: pointer;
 
       .avatar-root {
@@ -117,6 +121,39 @@
         white-space: nowrap;
       }
     }
+  }
+}
+
+.header-user-menu {
+  min-width: 150px;
+  padding: 10px 0;
+  background: var(--white);
+  border: 1px solid rgb(84 95 125 / 0.08);
+  border-radius: 4px;
+  box-shadow: 3px 5px 20px rgb(0 0 0 / 0.08);
+  z-index: 30;
+}
+
+.header-user-menu-item {
+  padding: 10px 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--primary-100);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+  outline: none;
+  cursor: pointer;
+
+  svg {
+    width: 16px;
+    height: 16px;
+    flex: 0 0 auto;
+  }
+
+  &[data-highlighted] {
+    background: rgb(57 205 204 / 0.08);
   }
 }
 
