@@ -15,7 +15,7 @@
     },
 
     "resolveJsonModule": true,
-    "types": ["vite/client"],
+    "types": ["vite/client", "vitest/globals"],
     "allowImportingTsExtensions": true,
     "noFallthroughCasesInSwitch": true,
     /* Linting */

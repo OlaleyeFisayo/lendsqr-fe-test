@@ -1,3 +1,4 @@
+/// <reference types="vitest" />
 import {
   fileURLToPath,
   URL,
@@ -6,7 +7,7 @@ import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 
 // https://vite.dev/config/
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
   build: {
     rolldownOptions: {
       output: {
@@ -49,10 +50,35 @@ export default defineConfig({
         find: "@",
         replacement: fileURLToPath(new URL("./src", import.meta.url)),
       },
+      ...(mode === "test"
+        ? [
+            {
+              find: /^.*\.svg(\?.*)?$/,
+              replacement: fileURLToPath(new URL("./src/test/__mocks__/svg-mock.ts", import.meta.url)),
+            },
+          ]
+        : []),
     ],
   },
   server: {
     port: 3000,
     strictPort: true,
   },
-});
+  test: {
+    environment: "jsdom",
+    globals: true,
+    setupFiles: ["src/test/setup.ts"],
+    css: false,
+    coverage: {
+      provider: "v8",
+      reporter: ["text", "html"],
+      include: ["src/**/*.{ts,tsx}"],
+      exclude: [
+        "src/main.tsx",
+        "src/shared/lib/router.tsx",
+        "src/features/dashboard/utils/users.json",
+        "src/test/**",
+      ],
+    },
+  },
+}));

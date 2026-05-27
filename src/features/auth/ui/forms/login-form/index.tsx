@@ -35,7 +35,7 @@ const loginFormResolver: Resolver<LoginFormValues> = async (values) => {
   for (const issue of result.error.issues) {
     const fieldName = issue.path[0];
 
-    if (fieldName === "email" || fieldName === "password") {
+    if ((fieldName === "email" || fieldName === "password") && !errors[fieldName]) {
       errors[fieldName] = {
         message: issue.message,
         type: issue.code,
@@ -71,6 +71,7 @@ export default function LoginForm() {
   return (
     <form
       className="login-form"
+      noValidate
       onSubmit={(event) => {
         void handleSubmit(onSubmit)(event);
       }}
