@@ -88,7 +88,7 @@ export default function LoginForm() {
 
       <p className="forget-password">Forgot Password?</p>
 
-      <Button>Log in</Button>
+      <Button type="submit">Log in</Button>
     </form>
   );
 }

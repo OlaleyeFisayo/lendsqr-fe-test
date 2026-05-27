@@ -1,12 +1,15 @@
 .data-table {
   width: 100%;
+  min-width: 0;
   color: var(--primary-100);
   font-family: var(--font-work-sans);
 }
 
 .data-table-card {
   width: 100%;
+  max-width: 100%;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
   background: var(--white);
   border: 1px solid var(--border);
   border-radius: 4px;
@@ -163,12 +166,14 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
   gap: 20px;
 }
 
 .data-table-page-size {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 10px;
   color: var(--primary-100);
   font-size: 14px;
@@ -189,6 +194,8 @@
 .data-table-page-nav {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
   gap: 8px;
 
   button {
@@ -247,7 +254,18 @@
 
 @media (max-width: 720px) {
   .data-table-pagination {
-    align-items: flex-start;
+    width: 100%;
+    align-items: center;
     flex-direction: column;
+    gap: 16px;
+  }
+
+  .data-table-page-size {
+    justify-content: center;
+  }
+
+  .data-table-page-nav {
+    width: 100%;
+    justify-content: center;
   }
 }

@@ -1,6 +1,7 @@
 import { Icon } from "@iconify/react";
 import { Link } from "react-router";
 import Button from "@/shared/ui/button";
+import BlacklistUserDialog from "../../components/blacklist-user-dialog";
 import UserDetailCard from "../../components/user-detail-card";
 import UserDetailSection from "../../components/user-detail-section";
 import "./user-detail.scss";
@@ -136,7 +137,10 @@ export default function UserDetail() {
       <div className="user-detail-header">
         <h1>User Details</h1>
         <div className="user-detail-actions">
-          <Button variant="danger-outline">Blacklist User</Button>
+          <BlacklistUserDialog
+            userName="Grace Effiom"
+            trigger={<Button variant="danger-outline">Blacklist User</Button>}
+          />
           <Button variant="secondary-outline">Activate User</Button>
         </div>
       </div>

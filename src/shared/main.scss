@@ -74,6 +74,15 @@
   --shadow: 3px 0 20px #0000000a;
 }
 
+html,
+body,
+#root {
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
 body {
   font-family: var(--font-family-base);
 }

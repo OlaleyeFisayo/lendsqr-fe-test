@@ -4,9 +4,31 @@ import { SIDEBAR_DATA } from "@/features/dashboard/utils/sidebar-data";
 import organizationIcon from "../../../assets/organization.svg";
 import "./layout-sidebar.scss";
 
-export default function LayoutSidebar() {
+type LayoutSidebarProps = {
+  isOpen?: boolean;
+  onClose?: () => void;
+};
+
+export default function LayoutSidebar({
+  isOpen = false,
+  onClose,
+}: LayoutSidebarProps) {
   return (
-    <aside id="layout-sidebar">
+    <aside
+      id="layout-sidebar"
+      className={isOpen ? "layout-sidebar--open" : undefined}
+    >
+      <button
+        className="sidebar-close-button"
+        type="button"
+        aria-label="Close sidebar"
+        onClick={onClose}
+      >
+        <Icon
+          icon="tabler:x"
+          aria-hidden="true"
+        />
+      </button>
       <div className="organization">
         <img
           src={organizationIcon}
@@ -55,6 +77,7 @@ export default function LayoutSidebar() {
               <NavLink
                 key={child.label}
                 to={child.href}
+                onClick={onClose}
                 className={({ isActive }) =>
                   `sidebar-child${isActive ? " sidebar-child--active" : ""}`}
               >

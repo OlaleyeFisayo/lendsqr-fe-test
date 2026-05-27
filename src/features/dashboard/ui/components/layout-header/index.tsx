@@ -5,10 +5,25 @@ import Input from "@/shared/ui/input";
 import Logo from "@/shared/ui/logo";
 import "./layout-header.scss";
 
-export default function LayoutHeader() {
+type LayoutHeaderProps = {
+  onMenuClick?: () => void;
+};
+
+export default function LayoutHeader({ onMenuClick }: LayoutHeaderProps) {
   return (
     <header id="layout-header">
-      <Logo />
+      <button
+        className="header-menu-button"
+        type="button"
+        aria-label="Open sidebar"
+        onClick={onMenuClick}
+      >
+        <Icon
+          icon="tabler:menu-2"
+          aria-hidden="true"
+        />
+      </button>
+      <Logo className="header-logo" />
       <Input
         placeholder="Search for anything"
         className="header-input"
@@ -19,8 +34,13 @@ export default function LayoutHeader() {
           />
         </Button>
       </Input>
-      <section>
-        <p className="docs">Docs</p>
+      <section className="header-actions">
+        <a
+          className="docs"
+          href="/"
+        >
+          Docs
+        </a>
         <Icon
           icon="tabler:bell"
           width="19"
@@ -41,6 +61,7 @@ export default function LayoutHeader() {
               icon="tabler:caret-down-filled"
               width="19"
               height="22"
+              aria-hidden="true"
             />
           </p>
         </div>
