@@ -2,11 +2,15 @@
 
 This project uses **Iconify** for icons.
 
-Use this collection by default:
+Use this installed collection by default:
 
 | Use case | Collection | Prefix |
 |----------|------------|--------|
 | UI icons, actions, navigation, states | Tabler Icons | `tabler:` |
+
+The project currently keeps only `@iconify-json/tabler` installed for local icon
+metadata/autocomplete. Do not use removed collections such as
+`@iconify-json/fa6-solid` unless the package is intentionally added back.
 
 ## Why Iconify?
 
@@ -60,7 +64,9 @@ autocomplete.
 ### Adding autocomplete for another collection
 
 1. Find the collection prefix from the Iconify browser or API list above.
-2. Add the collection JSON URL to `iconify.customCollectionJsonPaths`:
+2. Install the matching `@iconify-json/{prefix}` package if the collection
+   should be supported locally by the project.
+3. Add the collection JSON URL to `iconify.customCollectionJsonPaths`:
 
 ```json
 "https://cdn.jsdelivr.net/npm/@iconify-json/{prefix}/icons.json"
