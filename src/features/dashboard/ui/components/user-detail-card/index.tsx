@@ -46,6 +46,8 @@ export default function UserDetailCard({
   tier,
   userCode,
 }: UserDetailCardProps) {
+  const userTier = Number(tier);
+
   return (
     <section className="user-detail-card">
       <div className="user-detail-card-summary">
@@ -62,18 +64,13 @@ export default function UserDetailCard({
         <div className="user-detail-tier">
           <p>User's Tier</p>
           <div aria-label={`${tier} user tier`}>
-            <Icon
-              icon="tabler:star-filled"
-              aria-hidden="true"
-            />
-            <Icon
-              icon="tabler:star"
-              aria-hidden="true"
-            />
-            <Icon
-              icon="tabler:star"
-              aria-hidden="true"
-            />
+            {Array.from({ length: 3 }, (_, index) => (
+              <Icon
+                icon={index < userTier ? "tabler:star-filled" : "tabler:star"}
+                aria-hidden="true"
+                key={`user-tier-star-${index}`}
+              />
+            ))}
           </div>
         </div>
         <div className="user-detail-bank">

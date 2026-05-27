@@ -69,6 +69,7 @@ export default function DataTable<TData extends Record<string, unknown>>({
 }: DataTableProps<TData>) {
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [filterValues, setFilterValues] = useState<Record<string, string>>({});
+  const [openFilterId, setOpenFilterId] = useState<string | null>(null);
   const [pagination, setPagination] = useState<PaginationState>({
     pageIndex: 0,
     pageSize: initialPageSize,
@@ -136,12 +137,14 @@ export default function DataTable<TData extends Record<string, unknown>>({
         .filter(filter => filter.value !== ""),
     );
     table.setPageIndex(0);
+    setOpenFilterId(null);
   }
 
   function resetFilters() {
     setFilterValues({});
     setColumnFilters([]);
     table.setPageIndex(0);
+    setOpenFilterId(null);
   }
 
   function renderFilterField(column: DataTableColumn<TData>) {
@@ -220,7 +223,10 @@ export default function DataTable<TData extends Record<string, unknown>>({
                           <div className="data-table-header-cell">
                             <span>{flexRender(header.column.columnDef.header, header.getContext())}</span>
                             {header.column.getCanFilter() && (
-                              <Popover.Root>
+                              <Popover.Root
+                                open={openFilterId === header.id}
+                                onOpenChange={isOpen => setOpenFilterId(isOpen ? header.id : null)}
+                              >
                                 <Popover.Trigger
                                   className="data-table-filter-trigger"
                                   type="button"
