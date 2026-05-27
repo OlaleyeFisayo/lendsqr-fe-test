@@ -83,7 +83,7 @@ export default function DataTable<TData extends Record<string, unknown>>({
         return column.cell !== undefined ? column.cell(value, info.row.original) : String(value ?? "");
       },
       enableColumnFilter: column.enableFilter !== false,
-      filterFn: "includesString",
+      filterFn: column.filterType === "select" ? "equalsString" : "includesString",
       header: column.header,
     }));
 
