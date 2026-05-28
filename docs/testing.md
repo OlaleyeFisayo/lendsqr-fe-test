@@ -61,13 +61,11 @@ renderWithRouter(<MyComponent />, {
 
 Pure function tests. No React, no mocks.
 
-**`getDashboardUserById`** (6 tests)
-- Returns a defined value for a known valid id
-- The returned user's `id` matches the queried id
-- Returns `undefined` for a non-existent id
-- Returns `undefined` when called with `undefined`
-- Returns `undefined` for an empty string `""`
-- Exact match only — querying `"1"` does not return the user with id `"10"`
+**`getUserStatusPermissions`** (4 tests)
+- Active user cannot activate but can be blacklisted
+- Blacklisted user can be activated but cannot be blacklisted again
+- Inactive user can both be activated and blacklisted
+- Pending user can both be activated and blacklisted
 
 **`userTableData`** (4 tests)
 - Has the same length as `dashboardUsers`
@@ -108,7 +106,7 @@ Rendered via `renderWithRouter` at `"/"`. A sentinel route at `"/users"` renders
 
 ### `src/features/dashboard/ui/components/user-table/user-table.test.tsx`
 
-The `../../../utils/users-data` module is mocked with three controlled rows:
+State is seeded directly into the Zustand store with `useUsersStore.setState` in `beforeEach`, using three controlled users:
 
 | id | username | status |
 |---|---|---|
@@ -149,7 +147,7 @@ Wrapped in `MemoryRouter` because the table renders `<Link>` elements.
 
 ### `src/features/dashboard/ui/pages/user-detail/user-detail.test.tsx`
 
-Uses `createMemoryRouter` with `path: "/users/:id"`. `getDashboardUserById` is mocked per `describe` block via `vi.mocked().mockReturnValue()`.
+Uses `createMemoryRouter` with `path: "/users/:id"`. State is seeded into the Zustand store with `useUsersStore.setState` per `describe` block, allowing each group of tests to control the user's status independently.
 
 **User not found — negative scenarios** (3 tests)
 - Renders a "User not found" heading for an unrecognised id

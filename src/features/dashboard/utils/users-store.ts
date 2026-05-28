@@ -3,6 +3,7 @@ import type {
   UserStatus,
 } from "./users-data";
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 import { dashboardUsers } from "./users-data";
 
 type UsersStore = {
@@ -10,16 +11,21 @@ type UsersStore = {
   updateUserStatus: (userId: string, status: UserStatus) => void;
 };
 
-export const useUsersStore = create<UsersStore>(set => ({
-  users: dashboardUsers,
-  updateUserStatus: (userId, status) =>
-    set(state => ({
-      users: state.users.map(user =>
-        user.id === userId
-          ? {
-              ...user,
-              status,
-            }
-          : user),
-    })),
-}));
+export const useUsersStore = create<UsersStore>()(
+  persist(
+    set => ({
+      users: dashboardUsers,
+      updateUserStatus: (userId, status) =>
+        set(state => ({
+          users: state.users.map(user =>
+            user.id === userId
+              ? {
+                  ...user,
+                  status,
+                }
+              : user),
+        })),
+    }),
+    { name: "lendsqr-users-store" },
+  ),
+);
