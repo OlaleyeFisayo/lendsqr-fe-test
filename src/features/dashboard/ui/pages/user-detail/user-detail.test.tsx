@@ -9,10 +9,8 @@ import {
   createMemoryRouter,
   RouterProvider,
 } from "react-router";
-import { getDashboardUserById } from "../../../utils/users-data";
+import { useUsersStore } from "../../../utils/users-store";
 import UserDetail from "./index";
-
-vi.mock("../../../utils/users-data");
 
 const mockUser: DashboardUser = {
   id: "u1",
@@ -73,7 +71,7 @@ function renderUserDetail(id: string) {
 
 describe("userDetail - user not found (negative scenarios)", () => {
   beforeEach(() => {
-    vi.mocked(getDashboardUserById).mockReturnValue(undefined);
+    useUsersStore.setState({ users: [] });
   });
 
   it("renders 'User not found' heading for an unrecognised id", () => {
@@ -94,9 +92,11 @@ describe("userDetail - user not found (negative scenarios)", () => {
 
 describe("userDetail - user found as Inactive (positive scenarios)", () => {
   beforeEach(() => {
-    vi.mocked(getDashboardUserById).mockReturnValue({
-      ...mockUser,
-      status: "Inactive",
+    useUsersStore.setState({
+      users: [{
+        ...mockUser,
+        status: "Inactive",
+      }],
     });
   });
 
@@ -128,9 +128,11 @@ describe("userDetail - user found as Inactive (positive scenarios)", () => {
 
 describe("userDetail - user found as Active", () => {
   beforeEach(() => {
-    vi.mocked(getDashboardUserById).mockReturnValue({
-      ...mockUser,
-      status: "Active",
+    useUsersStore.setState({
+      users: [{
+        ...mockUser,
+        status: "Active",
+      }],
     });
   });
 
@@ -147,9 +149,11 @@ describe("userDetail - user found as Active", () => {
 
 describe("userDetail - user found as Blacklisted", () => {
   beforeEach(() => {
-    vi.mocked(getDashboardUserById).mockReturnValue({
-      ...mockUser,
-      status: "Blacklisted",
+    useUsersStore.setState({
+      users: [{
+        ...mockUser,
+        status: "Blacklisted",
+      }],
     });
   });
 
@@ -166,9 +170,11 @@ describe("userDetail - user found as Blacklisted", () => {
 
 describe("userDetail - Blacklist dialog interaction", () => {
   beforeEach(() => {
-    vi.mocked(getDashboardUserById).mockReturnValue({
-      ...mockUser,
-      status: "Inactive",
+    useUsersStore.setState({
+      users: [{
+        ...mockUser,
+        status: "Inactive",
+      }],
     });
   });
 

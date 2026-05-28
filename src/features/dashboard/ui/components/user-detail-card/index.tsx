@@ -34,7 +34,7 @@ type UserDetailCardProps = {
   accountNumber: string;
   bankName: string;
   fullName: string;
-  tier: string;
+  tier: number;
   userCode: string;
 };
 
@@ -46,8 +46,6 @@ export default function UserDetailCard({
   tier,
   userCode,
 }: UserDetailCardProps) {
-  const userTier = Number(tier);
-
   return (
     <section className="user-detail-card">
       <div className="user-detail-card-summary">
@@ -66,7 +64,7 @@ export default function UserDetailCard({
           <div aria-label={`${tier} user tier`}>
             {Array.from({ length: 3 }, (_, index) => (
               <Icon
-                icon={index < userTier ? "tabler:star-filled" : "tabler:star"}
+                icon={index < tier ? "tabler:star-filled" : "tabler:star"}
                 aria-hidden="true"
                 key={`user-tier-star-${index}`}
               />

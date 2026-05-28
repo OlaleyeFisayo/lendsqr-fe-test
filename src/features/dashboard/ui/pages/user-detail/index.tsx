@@ -5,6 +5,7 @@ import {
 } from "react-router";
 import { toast } from "sonner";
 import Button from "@/shared/ui/button";
+import { getUserStatusPermissions } from "../../../utils/users-data";
 import { useUsersStore } from "../../../utils/users-store";
 import BlacklistUserDialog from "../../components/blacklist-user-dialog";
 import UserDetailCard from "../../components/user-detail-card";
@@ -36,9 +37,10 @@ export default function UserDetail() {
     );
   }
 
-  const normalizedStatus = user.status.toLowerCase();
-  const canActivateUser = normalizedStatus !== "active";
-  const canBlacklistUser = normalizedStatus !== "blacklisted";
+  const {
+    canActivateUser,
+    canBlacklistUser,
+  } = getUserStatusPermissions(user.status);
 
   const userDetailSections = [
     {
@@ -198,7 +200,7 @@ export default function UserDetail() {
         accountNumber={user.accountNumber}
         bankName={user.bankName}
         fullName={user.fullName}
-        tier={String(user.tier)}
+        tier={user.tier}
         userCode={user.userCode}
       />
       <div className="user-detail-info-card">

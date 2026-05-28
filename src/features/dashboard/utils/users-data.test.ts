@@ -1,36 +1,45 @@
 import {
   dashboardUsers,
-  getDashboardUserById,
+  getUserStatusPermissions,
   organizations,
   userTableData,
 } from "./users-data";
 
-describe("getDashboardUserById", () => {
-  it("returns the user matching a valid id", () => {
-    const user = getDashboardUserById("1");
-    expect(user).toBeDefined();
+describe("getUserStatusPermissions", () => {
+  it("active user cannot activate but can be blacklisted", () => {
+    const {
+      canActivateUser,
+      canBlacklistUser,
+    } = getUserStatusPermissions("Active");
+    expect(canActivateUser).toBe(false);
+    expect(canBlacklistUser).toBe(true);
   });
 
-  it("returned user id matches the queried id", () => {
-    const user = getDashboardUserById("1");
-    expect(user?.id).toBe("1");
+  it("blacklisted user can be activated but cannot be blacklisted again", () => {
+    const {
+      canActivateUser,
+      canBlacklistUser,
+    } = getUserStatusPermissions("Blacklisted");
+    expect(canActivateUser).toBe(true);
+    expect(canBlacklistUser).toBe(false);
   });
 
-  it("returns undefined for a non-existent id", () => {
-    expect(getDashboardUserById("non-existent-id-99999")).toBeUndefined();
+  it("inactive user can both be activated and blacklisted", () => {
+    const {
+      canActivateUser,
+      canBlacklistUser,
+    } = getUserStatusPermissions("Inactive");
+    expect(canActivateUser).toBe(true);
+    expect(canBlacklistUser).toBe(true);
   });
 
-  it("returns undefined when called with undefined", () => {
-    expect(getDashboardUserById(undefined)).toBeUndefined();
-  });
-
-  it("returns undefined for an empty string", () => {
-    expect(getDashboardUserById("")).toBeUndefined();
-  });
-
-  it("exact match only — id '1' does not return user with id '10'", () => {
-    const user = getDashboardUserById("1");
-    expect(user?.id).not.toBe("10");
+  it("pending user can both be activated and blacklisted", () => {
+    const {
+      canActivateUser,
+      canBlacklistUser,
+    } = getUserStatusPermissions("Pending");
+    expect(canActivateUser).toBe(true);
+    expect(canBlacklistUser).toBe(true);
   });
 });
 

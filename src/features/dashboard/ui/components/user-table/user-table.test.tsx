@@ -1,3 +1,4 @@
+import type { DashboardUser } from "../../../utils/users-data";
 import {
   render,
   screen,
@@ -5,40 +6,81 @@ import {
 } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter } from "react-router";
+import { useUsersStore } from "../../../utils/users-store";
 import UserTable from "./index";
 
-vi.mock("../../../utils/users-data", () => ({
-  userTableData: [
-    {
-      id: "u1",
-      username: "alice",
-      email: "alice@test.com",
-      organization: "OrgA",
+function createMockUser(overrides: Partial<DashboardUser> & Pick<DashboardUser, "id" | "username" | "status">): DashboardUser {
+  return {
+    organization: "OrgA",
+    email: `${overrides.username}@test.com`,
+    phoneNumber: "111",
+    dateJoined: "2024-01-01",
+    userCode: "TST001",
+    tier: 1,
+    accountBalance: "₦0.00",
+    accountNumber: "0000000000",
+    bankName: "Test Bank",
+    fullName: overrides.username ?? "Test User",
+    personalInformation: {
+      fullName: overrides.username ?? "Test User",
       phoneNumber: "111",
-      dateJoined: "2024-01-01",
-      status: "Active",
+      emailAddress: `${overrides.username}@test.com`,
+      bvn: "00000000000",
+      gender: "Female",
+      maritalStatus: "Single",
+      children: "None",
+      typeOfResidence: "Apartment",
     },
-    {
-      id: "u2",
-      username: "bob",
-      email: "bob@test.com",
-      organization: "OrgB",
-      phoneNumber: "222",
-      dateJoined: "2024-01-02",
-      status: "Inactive",
+    educationAndEmployment: {
+      levelOfEducation: "B.Sc",
+      employmentStatus: "Employed",
+      sectorOfEmployment: "Tech",
+      durationOfEmployment: "1 year",
+      officeEmail: `${overrides.username}@company.com`,
+      monthlyIncome: "₦50,000.00",
+      loanRepayment: "₦5,000.00",
     },
-    {
-      id: "u3",
-      username: "carol",
-      email: "carol@test.com",
-      organization: "OrgA",
-      phoneNumber: "333",
-      dateJoined: "2024-01-03",
-      status: "Blacklisted",
+    socials: {
+      twitter: "",
+      facebook: "",
+      instagram: "",
     },
-  ],
-  organizations: ["OrgA", "OrgB"],
-}));
+    guarantor: {
+      fullName: "",
+      phoneNumber: "",
+      emailAddress: "",
+      relationship: "",
+    },
+    ...overrides,
+  };
+}
+
+const alice = createMockUser({
+  id: "u1",
+  username: "alice",
+  status: "Active",
+  organization: "OrgA",
+});
+const bob = createMockUser({
+  id: "u2",
+  username: "bob",
+  status: "Inactive",
+  organization: "OrgB",
+  email: "bob@test.com",
+  phoneNumber: "222",
+});
+const carol = createMockUser({
+  id: "u3",
+  username: "carol",
+  status: "Blacklisted",
+  organization: "OrgA",
+  email: "carol@test.com",
+  phoneNumber: "333",
+});
+
+beforeEach(() => {
+  useUsersStore.setState({ users: [alice, bob, carol] });
+});
 
 function renderUserTable() {
   return render(

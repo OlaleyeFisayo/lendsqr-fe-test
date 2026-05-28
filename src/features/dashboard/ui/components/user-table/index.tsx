@@ -12,7 +12,10 @@ import DataTable from "@/shared/ui/table";
 import activateUserIcon from "../../../assets/dropdown-activate-user.svg";
 import blacklistUserIcon from "../../../assets/dropdown-blacklist-user.svg";
 import eyeIcon from "../../../assets/dropdown-eye.svg";
-import { organizations } from "../../../utils/users-data";
+import {
+  getUserStatusPermissions,
+  organizations,
+} from "../../../utils/users-data";
 import { useUsersStore } from "../../../utils/users-store";
 import BlacklistUserDialog from "../blacklist-user-dialog";
 import "./user-table.scss";
@@ -47,8 +50,8 @@ const userTableColumns: DataTableColumn<UserTableRow>[] = [
   {
     accessorKey: "status",
     cell: value => (
-      <span className={`user-table-status user-table-status--${String(value).toLowerCase()}`}>
-        {String(value)}
+      <span className={`user-table-status user-table-status--${value.toLowerCase()}`}>
+        {value}
       </span>
     ),
     filterOptions: ["Active", "Inactive", "Pending", "Blacklisted"].map(status => ({
@@ -74,9 +77,10 @@ function UserTableActions({
   userName: string;
 }) {
   const [isBlacklistDialogOpen, setIsBlacklistDialogOpen] = useState(false);
-  const normalizedStatus = status.toLowerCase();
-  const canActivateUser = normalizedStatus !== "active";
-  const canBlacklistUser = normalizedStatus !== "blacklisted";
+  const {
+    canActivateUser,
+    canBlacklistUser,
+  } = getUserStatusPermissions(status);
 
   return (
     <>

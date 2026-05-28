@@ -67,6 +67,10 @@ export const userTableData: UserTableRow[] = dashboardUsers.map(user => ({
 
 export const organizations = Array.from(new Set(dashboardUsers.map(user => user.organization)));
 
-export function getDashboardUserById(userId: string | undefined) {
-  return dashboardUsers.find(user => user.id === userId);
+export function getUserStatusPermissions(status: UserStatus) {
+  const normalized = status.toLowerCase();
+  return {
+    canActivateUser: normalized !== "active",
+    canBlacklistUser: normalized !== "blacklisted",
+  };
 }

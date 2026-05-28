@@ -33,7 +33,7 @@ type FilterType = "date" | "select" | "text";
 export type DataTableColumn<TData extends Record<string, unknown>> = {
   accessorKey: Extract<keyof TData, string>;
   header: string;
-  cell?: (value: unknown, row: TData) => ReactNode;
+  cell?: (value: TData[Extract<keyof TData, string>], row: TData) => ReactNode;
   enableFilter?: boolean;
   filterOptions?: FilterOption[];
   filterType?: FilterType;
@@ -81,7 +81,7 @@ export default function DataTable<TData extends Record<string, unknown>>({
       accessorKey: column.accessorKey,
       cell: (info: CellContext<TData, unknown>): ReactNode => {
         const value = info.getValue();
-        return column.cell !== undefined ? column.cell(value, info.row.original) : String(value ?? "");
+        return column.cell !== undefined ? column.cell(value as TData[Extract<keyof TData, string>], info.row.original) : String(value ?? "");
       },
       enableColumnFilter: column.enableFilter !== false,
       filterFn: column.filterType === "select" ? "equalsString" : "includesString",
