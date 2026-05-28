@@ -7,7 +7,10 @@ import "./shared/main.scss";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <Toaster />
+    <Toaster
+      richColors
+      position="top-right"
+    />
     <RouterProvider router={router} />
   </StrictMode>,
 );

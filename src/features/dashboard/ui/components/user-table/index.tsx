@@ -7,14 +7,13 @@ import { Icon } from "@iconify/react";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { useState } from "react";
 import { Link } from "react-router";
+import { toast } from "sonner";
 import DataTable from "@/shared/ui/table";
 import activateUserIcon from "../../../assets/dropdown-activate-user.svg";
 import blacklistUserIcon from "../../../assets/dropdown-blacklist-user.svg";
 import eyeIcon from "../../../assets/dropdown-eye.svg";
-import {
-  organizations,
-  userTableData,
-} from "../../../utils/users-data";
+import { organizations } from "../../../utils/users-data";
+import { useUsersStore } from "../../../utils/users-store";
 import BlacklistUserDialog from "../blacklist-user-dialog";
 import "./user-table.scss";
 
@@ -153,17 +152,17 @@ function UserTableActions({
 }
 
 export default function UserTable() {
-  const [tableData, setTableData] = useState(userTableData);
-
-  function updateUserStatus(userId: string, status: UserStatus) {
-    setTableData(currentData => currentData.map(user =>
-      user.id === userId
-        ? {
-            ...user,
-            status,
-          }
-        : user));
-  }
+  const users = useUsersStore(state => state.users);
+  const updateUserStatus = useUsersStore(state => state.updateUserStatus);
+  const tableData: UserTableRow[] = users.map(user => ({
+    dateJoined: user.dateJoined,
+    email: user.email,
+    id: user.id,
+    organization: user.organization,
+    phoneNumber: user.phoneNumber,
+    status: user.status,
+    username: user.username,
+  }));
 
   return (
     <DataTable
@@ -173,8 +172,14 @@ export default function UserTable() {
       pageSizeOptions={[10, 25, 50, 75, 100]}
       rowActions={row => (
         <UserTableActions
-          onActivate={userId => updateUserStatus(userId, "Active")}
-          onBlacklist={userId => updateUserStatus(userId, "Blacklisted")}
+          onActivate={(userId) => {
+            updateUserStatus(userId, "Active");
+            toast.success("User has been activated");
+          }}
+          onBlacklist={(userId) => {
+            updateUserStatus(userId, "Blacklisted");
+            toast.success("User has been blacklisted");
+          }}
           status={row.status}
           userId={row.id}
           userName={row.username}

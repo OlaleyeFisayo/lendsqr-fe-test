@@ -3,8 +3,9 @@ import {
   Link,
   useParams,
 } from "react-router";
+import { toast } from "sonner";
 import Button from "@/shared/ui/button";
-import { getDashboardUserById } from "../../../utils/users-data";
+import { useUsersStore } from "../../../utils/users-store";
 import BlacklistUserDialog from "../../components/blacklist-user-dialog";
 import UserDetailCard from "../../components/user-detail-card";
 import UserDetailSection from "../../components/user-detail-section";
@@ -12,7 +13,8 @@ import "./user-detail.scss";
 
 export default function UserDetail() {
   const { id } = useParams();
-  const user = getDashboardUserById(id);
+  const user = useUsersStore(state => state.users.find(u => u.id === id));
+  const updateUserStatus = useUsersStore(state => state.updateUserStatus);
 
   if (!user) {
     return (
@@ -172,10 +174,22 @@ export default function UserDetail() {
             <BlacklistUserDialog
               userName={user.fullName}
               trigger={<Button variant="danger-outline">Blacklist User</Button>}
+              onConfirm={() => {
+                updateUserStatus(user.id, "Blacklisted");
+                toast.success("User has been blacklisted");
+              }}
             />
           )}
           {canActivateUser && (
-            <Button variant="secondary-outline">Activate User</Button>
+            <Button
+              variant="secondary-outline"
+              onClick={() => {
+                updateUserStatus(user.id, "Active");
+                toast.success("User has been activated");
+              }}
+            >
+              Activate User
+            </Button>
           )}
         </div>
       </div>
