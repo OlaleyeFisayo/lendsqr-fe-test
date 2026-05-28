@@ -17,6 +17,10 @@
     display: grid;
     grid-template-columns: repeat(5, minmax(0, 1fr));
     gap: 30px 42px;
+
+    > div {
+      min-width: 0;
+    }
   }
 
   dt {
@@ -31,6 +35,7 @@
     color: var(--primary-100);
     font-size: 16px;
     line-height: 1.2;
+    overflow-wrap: anywhere;
   }
 }
 
